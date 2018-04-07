@@ -118,7 +118,7 @@
             data.setCell(row-1,col,val);
             reDraw();
 
-            var newColour = val > currentVal? "green":"red";
+            var newColour = val > currentVal? "green":(val==currentVal? "orange":"red");
 
             flashColumn(row,col,newColour);
       }
