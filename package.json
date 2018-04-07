@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/refsons/nodeGrid/issues"
   },
-  "homepage": "https://github.com/refsons/nodeGrid#readme"
+  "homepage": "https://github.com/refsons/nodeGrid#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
