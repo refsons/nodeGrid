@@ -1,0 +1,22 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "Grid Test App to investigate limits of Javascript Grids",
+  "main": "index.js",
+  "scripts": {
+    "test": "Test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/refsons/nodeGrid.git"
+  },
+  "keywords": [
+    "POC"
+  ],
+  "author": "Simon Refson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/refsons/nodeGrid/issues"
+  },
+  "homepage": "https://github.com/refsons/nodeGrid#readme"
+}
