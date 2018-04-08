@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin='anonymous')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+
+  h1= title
+  p
+  #future
+  #buttons
+    .form-inline
+      label.ctrl-space(for='chat') Chat:
+      input.ctrl-space#chat.form-control(type='text')
+      button.ctrl-space.btn.btn-primary(onclick='sendChat()') Chat
+    p
+    .form-inline
+      label.ctrl-space(for='pageSize') PageSize:
+      input.ctrl-space#pageSize.form-control(type='text')
+      button.ctrl-space.btn.btn-primary(onclick='setPageSize()') Set Page Size
+    p
+    .form-inline
+      label.ctrl-space(for='colCount') Columns:
+      input.ctrl-space#colCount.form-control(type='text')
+      label.ctrl-space(for='rowCount') Rows:
+      input.ctrl-space#rowCount.form-control(type='text')
+      button.ctrl-space.btn.btn-primary(onclick='setTableSize()') Set Table
+    p
+    .form-inline
+      label.ctrl-space(for='col') Column:
+      input.ctrl-space#col.form-control(type='text')
+      label.ctrl-space(for='row') Row:
+      input.ctrl-space#row.form-control(type='text')
+      label.ctrl-space(for='val') Value:
+      input.ctrl-space#val.form-control(type='text')
+      button.ctrl-space.btn.btn-primary(onclick='setCellVal()') Set Value
+    p
+    .btn-toolbar
+      button.ctrl-space.btn.btn-primary(onclick='addRow()') Add Row
+      button.ctrl-space.btn.btn-primary(onclick='copyRow()') Copy Row
+      button.ctrl-space.btn.btn-primary(onclick='deleteRow()') Delete Row
+  #table_div
+
+
+

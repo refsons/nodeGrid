@@ -391,3 +391,6 @@ td {
     background-color: green;
     transition: background-color 1s;
 }
+.ctrl-space {
+    margin-right: 5px;
+}

@@ -8,6 +8,32 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+var server = require('http').createServer(app);
+
+var io = require('socket.io')(server);
+var clients = [];
+
+io.on('connection', function(client) {
+    console.log('Client connected...');
+    clients.push(client);
+
+    client.on('join', function(data) {
+        console.log(data);
+    });
+
+    client.on('messages', function(data) {
+           client.emit('broad', "From Server: "+data);
+           client.broadcast.emit('broad',data);
+    });
+
+});
+
+
+app.use(express.static(__dirname + '/node_modules'));
+
+server.listen(4200);
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -18,7 +44,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -39,4 +64,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+
 module.exports = app;
+

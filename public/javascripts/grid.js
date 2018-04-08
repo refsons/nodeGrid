@@ -1,11 +1,48 @@
+
+
       google.charts.load('current', {'packages':['table']});
       google.charts.setOnLoadCallback(drawTable);
 
       var table = null;
       var data = null;
+      var pageSize = 50;
+
+      var socket = io();
+      socket.connect('http://localhost:4200');
+        // Add a connect listener
+        socket.on('connect',function() {
+        console.log('Client has connected to the server!');
+      });
+      // Add a connect listener
+      socket.on('message',function(data) {
+        console.log('Received a message from the server!',data);
+      });
+      // Add a disconnect listener
+      socket.on('disconnect',function() {
+        console.log('The client has disconnected!');
+      });
+      socket.on('connect', function(data) {
+        socket.emit('join', 'Hello World from client');
+      });
+      socket.on('broad', function(data) {
+        $('#future').append(data+ "<br/>");
+      });
+
+      // Sends a message to the server via sockets
+      function sendMessageToServer(message) {
+        socket.send(message);
+      };
+      function sendChat(){
+        var message = document.getElementById( 'chat' ).value;
+        socket.emit('messages', message);
+      };
+
+
+
 
       function drawTable() {
         setTable(5,5);
+
       }
 
       function setTable(colNum, rowNum) {
@@ -80,7 +117,7 @@
          console.time('reDraw');
          table.draw(data, {showRowNumber: true, width: '100%', height: '100%',
          page: 'enable',
-                 pageSize: 50,
+                 pageSize: pageSize,
                  pagingSymbols: {
                      prev: 'prev',
                      next: 'next'
@@ -123,6 +160,11 @@
             flashColumn(row,col,newColour);
       }
 
+      function setPageSize(){
+      pageSize = Number(document.getElementById( 'pageSize' ).value);
+      reDraw();
+      }
+
       function flashColumn(row, col, colour){
         var container = document.getElementById('table_div');
         var tableRow = container.getElementsByTagName('TR')[row];
@@ -145,5 +187,12 @@
             tableRow.style.backgroundColor = 'white';
           }, 1000);
         }
+
+
+
+
+
+
+
 
 
